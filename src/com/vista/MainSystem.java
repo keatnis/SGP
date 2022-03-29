@@ -1,7 +1,10 @@
 
 package com.vista;
 
+import com.component.ReportarIncidencia;
 import com.formdev.flatlaf.FlatLightLaf;
+import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.geom.RoundRectangle2D;
 import java.time.LocalDate;
@@ -12,6 +15,7 @@ public class MainSystem extends javax.swing.JFrame {
    
     public MainSystem() {
         initComponents();
+        this.showForm(new Dasboard(),"Dasboard");
         LocalDate now = LocalDate.now();
         int year = now.getYear();
         int dia = now.getDayOfMonth();
@@ -21,10 +25,16 @@ public class MainSystem extends javax.swing.JFrame {
         lbFecha.setText("Hoy es " + dia + " de " + meses[month - 1] + " de " + year);   
    // this.setShape(new RoundRectangle2D.Double(0, 0, getWidth(),getHeight(), 20, 20));
     }
-public void showForm(Component form) {
-      // lbTitle.setText(title);
+    
+   
+  public void showForm(Component form) {
+        showForm(form, "");
+    }
+  
+    public void showForm(Component form, String title) {
+       lbTitle.setText(title);
         panelBody.removeAll();
-        panelBody.add(form);
+        panelBody.add(form, BorderLayout.CENTER);
         panelBody.repaint();
         panelBody.revalidate();
     }
@@ -45,7 +55,9 @@ public void showForm(Component form) {
         jLabel4 = new javax.swing.JLabel();
         imageAvatar1 = new com.swing.ImageAvatar();
         jLabel5 = new javax.swing.JLabel();
-        jButton4 = new javax.swing.JButton();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jPanel3 = new javax.swing.JPanel();
+        lbTitle = new javax.swing.JLabel();
         panelBody = new javax.swing.JPanel();
         MenuBar = new javax.swing.JMenuBar();
         Dasboard = new javax.swing.JMenu();
@@ -54,8 +66,10 @@ public void showForm(Component form) {
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
         jMenuItem9 = new javax.swing.JMenuItem();
+        jMenuItem23 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem10 = new javax.swing.JMenuItem();
+        jMenuItem21 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem8 = new javax.swing.JMenuItem();
@@ -75,6 +89,7 @@ public void showForm(Component form) {
         jMenu7 = new javax.swing.JMenu();
         jMenu10 = new javax.swing.JMenu();
         jMenuItem19 = new javax.swing.JMenuItem();
+        jMenuItem20 = new javax.swing.JMenuItem();
         jMenu11 = new javax.swing.JMenu();
 
         menus.setAlignmentX(0.8F);
@@ -96,6 +111,7 @@ public void showForm(Component form) {
         menus.add(jMenu3);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(1300, 900));
 
         jPanel1.setBackground(new java.awt.Color(31, 44, 81));
 
@@ -120,10 +136,11 @@ public void showForm(Component form) {
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("User Name");
 
-        jButton4.setBackground(new java.awt.Color(31, 44, 81));
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/icon/logout.png"))); // NOI18N
-        jButton4.setBorderPainted(false);
-        jButton4.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/com/icon/Logout_press.png"))); // NOI18N
+        jComboBox1.setBackground(new java.awt.Color(31, 44, 81));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mi Perfil", "Cambiar Contraseña", "Cerrar Sesión" }));
+        jComboBox1.setToolTipText("");
+        jComboBox1.setBorder(null);
+        jComboBox1.setOpaque(false);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -136,15 +153,15 @@ public void showForm(Component form) {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 329, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 376, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbFecha, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 200, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 377, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addComponent(imageAvatar1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18))
         );
@@ -162,15 +179,37 @@ public void showForm(Component form) {
                                 .addComponent(jLabel1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(lbFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(imageAvatar1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jLabel5)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                .addGap(2, 2, 2))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(0, 0, 0)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
+        );
+
+        lbTitle.setFont(new java.awt.Font("Poppins", 1, 18)); // NOI18N
+        lbTitle.setForeground(new java.awt.Color(51, 51, 51));
+        lbTitle.setText("Titulo del Módulo");
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lbTitle)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(13, 13, 13)
+                .addComponent(lbTitle)
+                .addGap(3, 3, 3))
         );
 
         panelBody.setOpaque(false);
@@ -180,8 +219,13 @@ public void showForm(Component form) {
         MenuBar.setBorderPainted(false);
 
         Dasboard.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/icon/dashboard_1.png"))); // NOI18N
-        Dasboard.setText("Tablero");
+        Dasboard.setText("Inicio");
         Dasboard.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/com/icon/dashboard_press.png"))); // NOI18N
+        Dasboard.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                DasboardMouseClicked(evt);
+            }
+        });
         Dasboard.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 DasboardActionPerformed(evt);
@@ -198,7 +242,7 @@ public void showForm(Component form) {
             }
         });
 
-        menuPNomina.setText("Personal de Nómina");
+        menuPNomina.setText("Lista");
         menuPNomina.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menuPNominaActionPerformed(evt);
@@ -206,27 +250,43 @@ public void showForm(Component form) {
         });
         menuPersonal.add(menuPNomina);
 
-        jMenuItem6.setText("Personal por Honorarios");
+        jMenuItem6.setText("Registrar Nuevo");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
         menuPersonal.add(jMenuItem6);
 
         jMenuItem7.setText("Dar de Baja");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem7ActionPerformed(evt);
+            }
+        });
         menuPersonal.add(jMenuItem7);
 
-        jMenuItem9.setText("Expediente de Personal");
+        jMenuItem9.setText("Perfil de personal");
         menuPersonal.add(jMenuItem9);
+
+        jMenuItem23.setText("Directorio");
+        menuPersonal.add(jMenuItem23);
 
         MenuBar.add(menuPersonal);
 
         jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/icon/search_2.png"))); // NOI18N
-        jMenu4.setText("Consultas");
+        jMenu4.setText("Documentos");
 
-        jMenuItem10.setText("Consulta rápida");
+        jMenuItem10.setText("Expediente del personal");
         jMenu4.add(jMenuItem10);
+
+        jMenuItem21.setText("Justificantes");
+        jMenu4.add(jMenuItem21);
 
         MenuBar.add(jMenu4);
 
         jMenu5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/icon/export_pdf.png"))); // NOI18N
-        jMenu5.setText("Reporte");
+        jMenu5.setText("Listas");
 
         jMenuItem3.setText("Generar un Reporte");
         jMenu5.add(jMenuItem3);
@@ -234,7 +294,7 @@ public void showForm(Component form) {
         jMenuItem8.setText("Ficha de Personal");
         jMenu5.add(jMenuItem8);
 
-        jMenu2.setText("Generar un Reporte");
+        jMenu2.setText("Generar una Lista de ");
 
         jMenuItem12.setText("Dias Festivos");
         jMenu2.add(jMenuItem12);
@@ -260,12 +320,23 @@ public void showForm(Component form) {
 
         MenuBar.add(jMenu5);
 
-        jMenu6.setText("Acciones");
+        jMenu6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/icon/report.png"))); // NOI18N
+        jMenu6.setText("Contro de Incidencias");
 
         jMenuItem2.setText("Reportar Incidencia");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
         jMenu6.add(jMenuItem2);
 
         jMenuItem11.setText("Generar pase de Salida");
+        jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem11ActionPerformed(evt);
+            }
+        });
         jMenu6.add(jMenuItem11);
 
         MenuBar.add(jMenu6);
@@ -297,13 +368,21 @@ public void showForm(Component form) {
             }
         });
 
-        jMenuItem19.setText("prueba");
+        jMenuItem19.setText("Usuarios Registrados");
         jMenuItem19.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem19ActionPerformed(evt);
             }
         });
         jMenu10.add(jMenuItem19);
+
+        jMenuItem20.setText("Registrar Nuevo Usuario");
+        jMenuItem20.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem20ActionPerformed(evt);
+            }
+        });
+        jMenu10.add(jMenuItem20);
 
         MenuBar.add(jMenu10);
 
@@ -318,16 +397,18 @@ public void showForm(Component form) {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(panelBody, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panelBody, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(0, 0, 0)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(panelBody, javax.swing.GroupLayout.PREFERRED_SIZE, 514, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(panelBody, javax.swing.GroupLayout.DEFAULT_SIZE, 746, Short.MAX_VALUE))
         );
 
         pack();
@@ -339,7 +420,7 @@ public void showForm(Component form) {
     }//GEN-LAST:event_menuPersonalActionPerformed
 
     private void menuPNominaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuPNominaActionPerformed
-      this.showForm(new PersonalNomina());
+      this.showForm(new Personal(),"Personal de Nómina");
     }//GEN-LAST:event_menuPNominaActionPerformed
 
     private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
@@ -347,23 +428,46 @@ public void showForm(Component form) {
     }//GEN-LAST:event_jMenuItem15ActionPerformed
 
     private void DasboardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DasboardActionPerformed
-     showForm(new Dasboard());
+     this.showForm(new Dasboard());
     }//GEN-LAST:event_DasboardActionPerformed
 
     private void jMenu10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu10ActionPerformed
-     this.showForm(new Usuarios());
+    // this.showForm(new Usuarios(),"Usuarios");
     }//GEN-LAST:event_jMenu10ActionPerformed
 
     private void jMenuItem19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem19ActionPerformed
-       this.showForm(new Usuarios());
+       this.showForm(new Usuarios(),"Usuarios");
     }//GEN-LAST:event_jMenuItem19ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    private void jMenuItem20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem20ActionPerformed
+      this.showForm(new RegistrarUsuario(),"Nuevo Usuario");
+    }//GEN-LAST:event_jMenuItem20ActionPerformed
+
+    private void DasboardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DasboardMouseClicked
+        // TODO add your handling code here:
+        this.showForm(new Dasboard());
+    }//GEN-LAST:event_DasboardMouseClicked
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+       this.showForm(new RegistrarPN(),"Registro de Personal");
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
+
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+        this.showForm(new BajaPersonal(),"Motivo de Baja");
+    }//GEN-LAST:event_jMenuItem7ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+      this.showForm(new ReportarIncidencia(),"Reportar Incidencia");
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
+     this.showForm(new PaseSalida(),"Generar Pase de Salida");
+    }//GEN-LAST:event_jMenuItem11ActionPerformed
+
     public static void main(String args[]) {
       try {
             UIManager.setLookAndFeel(new FlatLightLaf());
+            UIManager.put("TabbedPane.selectedBackground", new Color(255, 204, 0));
         } catch (Exception ex) {
             System.err.println("Failed to initialize LaF");
         }
@@ -378,7 +482,7 @@ public void showForm(Component form) {
     private javax.swing.JMenu Dasboard;
     private javax.swing.JMenuBar MenuBar;
     private com.swing.ImageAvatar imageAvatar1;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -405,6 +509,9 @@ public void showForm(Component form) {
     private javax.swing.JMenuItem jMenuItem18;
     private javax.swing.JMenuItem jMenuItem19;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem20;
+    private javax.swing.JMenuItem jMenuItem21;
+    private javax.swing.JMenuItem jMenuItem23;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
@@ -413,7 +520,9 @@ public void showForm(Component form) {
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JLabel lbFecha;
+    private javax.swing.JLabel lbTitle;
     private javax.swing.JMenuItem menuPNomina;
     private javax.swing.JMenu menuPersonal;
     private javax.swing.JPopupMenu menus;

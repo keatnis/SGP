@@ -3,6 +3,7 @@ package com.vista;
 
 import com.formdev.flatlaf.FlatLightLaf;
 import java.awt.geom.RoundRectangle2D;
+import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
 public class Login extends javax.swing.JFrame {
@@ -26,8 +27,8 @@ public class Login extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         jPanel2 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        passwordField1 = new com.swing.PasswordField();
-        textField11 = new com.swing.TextField1();
+        txtPassword = new com.swing.PasswordField();
+        txtUser = new com.swing.TextField1();
         buttonBadges1 = new com.swing.ButtonBadges();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -89,18 +90,23 @@ public class Login extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         jLabel5.setText("Inicio de Sesión");
 
-        passwordField1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        passwordField1.setLabelText("Contraseña");
-        passwordField1.setSelectionColor(new java.awt.Color(31, 44, 81));
-        passwordField1.setShowAndHide(true);
+        txtPassword.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtPassword.setLabelText("Contraseña");
+        txtPassword.setSelectionColor(new java.awt.Color(31, 44, 81));
+        txtPassword.setShowAndHide(true);
 
-        textField11.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        textField11.setLabelText("Usuario");
+        txtUser.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtUser.setLabelText("Usuario");
 
         buttonBadges1.setBackground(new java.awt.Color(31, 44, 81));
         buttonBadges1.setForeground(new java.awt.Color(255, 255, 255));
         buttonBadges1.setText("Ingresar");
         buttonBadges1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        buttonBadges1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonBadges1ActionPerformed(evt);
+            }
+        });
 
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setForeground(new java.awt.Color(51, 51, 51));
@@ -137,8 +143,8 @@ public class Login extends javax.swing.JFrame {
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(110, 110, 110)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(passwordField1, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
-                                    .addComponent(textField11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                    .addComponent(txtPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
+                                    .addComponent(txtUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                         .addGap(0, 118, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -155,9 +161,9 @@ public class Login extends javax.swing.JFrame {
                 .addGap(38, 38, 38)
                 .addComponent(jLabel5)
                 .addGap(27, 27, 27)
-                .addComponent(textField11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33)
-                .addComponent(passwordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(56, 56, 56)
                 .addComponent(buttonBadges1, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
@@ -188,6 +194,28 @@ public class Login extends javax.swing.JFrame {
     System.exit(0);
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void buttonBadges1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBadges1ActionPerformed
+   String usu=txtUser.getText();
+        String pas=new String(txtPassword.getPassword());
+        if(usu.equals("admin") && pas.equals("asd"))
+        {
+            this.setVisible(false);
+           MainSystem nf= new MainSystem();
+           nf.setVisible(true);
+//            JOptionPane.showMessageDialog(null, "Bienvenido");
+//                    Principal ingreso = new Principal();
+//                    ingreso.setVisible(true);
+            //        ingreso.pack();
+            //
+         
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Los Datos son Incorrectos vuelva a Intentarlo");
+            txtUser.requestFocus();
+        }
+    }//GEN-LAST:event_buttonBadges1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -216,7 +244,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JSeparator jSeparator1;
-    private com.swing.PasswordField passwordField1;
-    private com.swing.TextField1 textField11;
+    private com.swing.PasswordField txtPassword;
+    private com.swing.TextField1 txtUser;
     // End of variables declaration//GEN-END:variables
 }

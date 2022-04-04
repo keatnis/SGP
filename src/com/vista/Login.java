@@ -20,6 +20,7 @@ public class Login extends javax.swing.JFrame {
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
+        jButton3 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -32,6 +33,8 @@ public class Login extends javax.swing.JFrame {
         buttonBadges1 = new com.swing.ButtonBadges();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+
+        jButton3.setText("jButton3");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -202,12 +205,6 @@ public class Login extends javax.swing.JFrame {
             this.setVisible(false);
            MainSystem nf= new MainSystem();
            nf.setVisible(true);
-//            JOptionPane.showMessageDialog(null, "Bienvenido");
-//                    Principal ingreso = new Principal();
-//                    ingreso.setVisible(true);
-            //        ingreso.pack();
-            //
-         
         }
         else
         {
@@ -216,14 +213,13 @@ public class Login extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_buttonBadges1ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+
     public static void main(String args[]) {
         try {
             UIManager.setLookAndFeel(new FlatLightLaf());
         } catch (Exception ex) {
             System.err.println("Failed to initialize LaF");
+            
         }
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -237,6 +233,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

@@ -29,7 +29,7 @@ public class Card extends javax.swing.JPanel {
 
     public void setIcon(GoogleMaterialDesignIcon icon) {
         this.icon = icon;
-        lbIcon.setIcon(new GoogleMaterialIcon(icon, GradientType.DIAGONAL_1, new Color(191, 191, 191), Color.WHITE, 32).toIcon());
+        lbIcon.setIcon(new GoogleMaterialIcon(icon, GradientType.DIAGONAL_1, new Color(191, 191, 191), Color.WHITE, 40).toIcon());
     }
 
     public GoogleMaterialDesignIcon getIcon() {
@@ -40,7 +40,7 @@ public class Card extends javax.swing.JPanel {
     protected void paintComponent(Graphics g) {
         Graphics2D g2 = (Graphics2D) g.create();
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-        Area area = new Area(new RoundRectangle2D.Double(0, 20, getWidth(), getHeight() - 20, 10, 10));
+        Area area = new Area(new RoundRectangle2D.Double(0, 20, getWidth(), getHeight() - 20, 20, 20));
         g2.setColor(getBackground());
         g2.fill(area);
         area.subtract(new Area(new Rectangle2D.Double(0, 20, getWidth(), getHeight() - 23)));
@@ -105,39 +105,38 @@ public class Card extends javax.swing.JPanel {
         lbDescription = new javax.swing.JLabel();
         lbIcon = new com.component.LabelIcon();
 
-        lbValues.setFont(new java.awt.Font("sansserif", 1, 24)); // NOI18N
-        lbValues.setForeground(new java.awt.Color(102, 102, 102));
+        lbValues.setFont(new java.awt.Font("Segoe UI", 1, 40)); // NOI18N
+        lbValues.setForeground(new java.awt.Color(51, 51, 51));
         lbValues.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lbValues.setText("$ 0.00");
+        lbValues.setText("100");
 
-        lbDescription.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        lbDescription.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
         lbDescription.setForeground(new java.awt.Color(51, 51, 51));
         lbDescription.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lbDescription.setText("Report Income Monthly");
+
+        lbIcon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbIcon.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(10, 10, 10)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lbDescription, javax.swing.GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(35, 35, 35)
-                        .addComponent(lbValues, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGap(10, 10, 10))
+                    .addComponent(lbDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbValues, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(26, 26, 26))
             .addGroup(layout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addComponent(lbIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(lbIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(lbIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(10, 10, 10)
                 .addComponent(lbValues)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lbDescription)

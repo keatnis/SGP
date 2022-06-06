@@ -96,7 +96,7 @@ public class ImageAvatar extends JComponent {
         return new Rectangle(new Point(x, y), new Dimension(width, height));
     }
 
-    private Image toImage(Icon icon) {
+    public Image toImage(Icon icon) {
         return ((ImageIcon) icon).getImage();
     }
 }

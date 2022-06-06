@@ -4,12 +4,12 @@ import com.model.ModelUsers;
 
 public class ModelAction {
 
-    public ModelUsers getUser() {
-        return user;
+    public ModelUsers getUsuario() {
+        return usuario;
     }
 
     public void setUser(ModelUsers user) {
-        this.user = user;
+        this.usuario = user;
     }
 
     public EventAction getEvent() {
@@ -20,14 +20,14 @@ public class ModelAction {
         this.event = event;
     }
 
-    public ModelAction(ModelUsers user, EventAction event) {
-        this.user = user;
+    public ModelAction(ModelUsers usuario, EventAction event) {
+        this.usuario = usuario;
         this.event = event;
     }
 
     public ModelAction() {
     }
 
-    private ModelUsers user;
+    private ModelUsers usuario;
     private EventAction event;
 }

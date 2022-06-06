@@ -7,14 +7,17 @@ import com.component.ModelAction;
 import com.model.ModelUsers;
 
 import com.component.Message;
+import com.connection.Conexion;
 import java.awt.BorderLayout;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import javax.swing.table.DefaultTableModel;
 
 
 
 public class Usuarios extends javax.swing.JPanel {
 private DefaultTableModel model;
-   
+    Conexion con = new Conexion();
     public Usuarios() {
         initComponents();
         initData();
@@ -22,6 +25,8 @@ private DefaultTableModel model;
     }
      private void initData() {
        
+        
+       // cargar("");
         initTableData();
     }
      
@@ -49,16 +54,39 @@ private DefaultTableModel model;
             }
         };
         
-       String titulos[] ={"Nombre","Usuario","Tipo de Usuario","Estado","Acciones"};
-        model=new DefaultTableModel(null,titulos);
-        table1.setModel(model);
-        table1.addRow( new ModelUsers("Maria", "Admin", "Administrador", "Activo").toRowTable(eventAction));
-        table1.addRow( new ModelUsers("Flora", "Flor", "Normal", "Activo").toRowTable(eventAction));
-    
-    
+        
+        
+//       String titulos[] ={"Nombre","Usuario","Tipo de Usuario","Estado","Acciones"};
+//        model=new DefaultTableModel(null,titulos);
+//        table1.setModel(model);
+        
+    try{
+            String [] titulos={"Nombre","Usuario","Tipo de Usuario","Estado","Acciones"};
+            String [] registros= new String[4];
+            model=new DefaultTableModel(null,titulos);
+            
+            String cons="SELECT tbl_usuario.nombre, tbl_usuario.usuario, tbl_usuario.tipo_usuario,tbl_usuario.status from tbl_usuario;";
+            Statement st= con.getConnection().createStatement();
+            ResultSet rs = st.executeQuery(cons);
+            while(rs.next()){
+                registros[0]=rs.getString(1);
+                registros[1]=rs.getString(2);
+                registros[2]=rs.getString(3);
+                registros[3]=rs.getString(4);
+                
+                model.addRow(registros); 
+                
+                }
+            table1.setModel(model);
+
+            }catch(Exception e){
+                System.out.println(e.getMessage());
+          
+            
+            }
         
  }
- 
+  
   private boolean showMessage(String message) {
         Message obj = new Message(MainSystem.getFrames()[0], true);
         obj.showMessage(message);

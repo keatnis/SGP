@@ -12,13 +12,13 @@ public class Action extends javax.swing.JPanel {
         cmdEdit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                data.getEvent().update(data.getUser());
+                data.getEvent().update(data.getUsuario());
             }
         });
         cmdDelete.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                data.getEvent().delete(data.getUser());
+                data.getEvent().delete(data.getUsuario());
             }
         });
     }

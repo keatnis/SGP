@@ -13,7 +13,7 @@
 	<parameter name="Folio" class="java.lang.String"/>
 	<queryString language="SQL">
 		<![CDATA[SELECT concat(tbl_empleado.abrev_nombre,' ',tbl_empleado.nombre,' ',tbl_empleado.ape_paterno,' ',tbl_empleado.ape_materno)NombreCombleto,tbl_empleado.num_empleado,tbl_empleo.jefe_inmediato,tbl_empleo.horario_trabajo FROM tbl_empleado,tbl_empleo 
-where num_empleado=$P{NumEmp} and id_empleado=id_empleo]]>
+where tb b $P{NumEmp}  and tbl_empleado.num_empleado=tbl_empleo.num_empleado]]>
 	</queryString>
 	<field name="NombreCombleto" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="NombreCombleto"/>

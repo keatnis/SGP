@@ -13,13 +13,13 @@ public class ReportesDAO {
     Conexion con = new Conexion();
     PreparedStatement psql;
     ResultSet rs;
-
+ Connection conn = con.getConnection();
     public ArrayList<ModelReports> listReporteGenero() {
         ArrayList listaJefes = new ArrayList();
         ModelReports personal;
 
-        PreparedStatement ps = null;
-        Connection conn = con.getConnection();
+      
+       
 
         String SentenciaSQL = "SELECT  num_empleado,concat(abrev_nombre,' ',nombre,' ',ape_paterno,' ',ape_materno)nombreCompleto,genero from db_rh.tbl_empleado order by num_empleado";
 
@@ -46,14 +46,13 @@ public class ReportesDAO {
         ArrayList listaJefes = new ArrayList();
         ModelReports personal;
 
-        PreparedStatement ps = null;
-        Connection conn = con.getConnection();
+        
 
         String SentenciaSQL = "SELECT  num_empleado,concat(abrev_nombre,' ',nombre,' ',ape_paterno,' ',ape_materno)nombreCompleto,genero from db_rh.tbl_empleado where genero='M' order by num_empleado;";
 
         try {
             psql = conn.prepareStatement(SentenciaSQL);
-            ResultSet rs = psql.executeQuery();
+             rs = psql.executeQuery();
             while (rs.next()) {
                 personal = new ModelReports();
 
@@ -74,14 +73,14 @@ public class ReportesDAO {
         ArrayList listaJefes = new ArrayList();
         ModelReports personal;
 
-        PreparedStatement ps = null;
-        Connection conn = con.getConnection();
+        
+      
 
         String SentenciaSQL = "SELECT  num_empleado,concat(abrev_nombre,' ',nombre,' ',ape_paterno,' ',ape_materno)nombreCompleto,genero from db_rh.tbl_empleado where genero='H' order by num_empleado;";
 
         try {
             psql = conn.prepareStatement(SentenciaSQL);
-            ResultSet rs = psql.executeQuery();
+          rs = psql.executeQuery();
             while (rs.next()) {
                 personal = new ModelReports();
 

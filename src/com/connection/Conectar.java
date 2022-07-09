@@ -13,7 +13,7 @@ public class Conectar {
 
     static String bd = "db_rh";
     static String login = "root";
-    static String password = "";
+    static String password = "root";
     
     
     Connection connection = null;

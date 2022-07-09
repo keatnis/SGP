@@ -75,10 +75,11 @@ public class Login extends javax.swing.JFrame {
         jButton3.setText("jButton3");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Sistema de Gestión de Personal");
         setUndecorated(true);
         setResizable(false);
 
-        jPanel1.setBackground(new java.awt.Color(31, 44, 81));
+        jPanel1.setBackground(new java.awt.Color(0, 51, 102));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
@@ -139,7 +140,7 @@ public class Login extends javax.swing.JFrame {
         txtUsuario.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtUsuario.setLabelText("Usuario");
 
-        btnIngresar.setBackground(new java.awt.Color(31, 44, 81));
+        btnIngresar.setBackground(new java.awt.Color(0, 51, 102));
         btnIngresar.setForeground(new java.awt.Color(255, 255, 255));
         btnIngresar.setText("Ingresar");
         btnIngresar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -272,8 +273,8 @@ public class Login extends javax.swing.JFrame {
         this.dispose();
  
       //  splashMain sm =new splashMain(); 
-     //   MainSystem ms= new MainSystem(mod);
-       // ms.setVisible(true);
+//        MainSystem ms= new MainSystem(mod);
+//        ms.setVisible(true);
       
           
        }else{

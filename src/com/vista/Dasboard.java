@@ -1,83 +1,146 @@
 package com.vista;
 
+import com.DAO.CumpleañosDAO;
 import com.component.ModelCard;
 import com.component.ModelNoticeBoard;
 import com.model.ModelDasboard;
 import java.awt.Color;
 import com.DAO.DasboardDAO;
+import com.component.GestionEncabezadoTabla;
 import com.component.Model_Card2;
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Connection;
 import com.connection.Conexion;
-import com.notification.Notification;
-import java.awt.BorderLayout;
-import java.awt.Component;
+import com.model.ModelCumpleaños;
 import java.awt.CardLayout;
 import java.time.LocalDate;
 import javax.swing.ImageIcon;
 import com.vista.MainSystem;
-public class Dasboard extends javax.swing.JPanel  {
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
+import javax.swing.table.TableColumnModel;
+
+public class Dasboard extends javax.swing.JPanel {
 
     ModelDasboard das;
     DasboardDAO dao;
+    CumpleañosDAO daoCump = new CumpleañosDAO();
     String total;
-  // MainSystem main=new MainSystem();
-    ReporteGenero rg=new ReporteGenero();
-    
-final static String ventana1 = "Ventana ";
-final static String ventana2 = "Card with JTextField";
+    // MainSystem main=new MainSystem();
+    ReporteGenero rg = new ReporteGenero();
 
+    final static String ventana1 = "Ventana ";
+    final static String ventana2 = "Card with JTextField";
+    String numEmp, nombreCompleto, fechaNac, edad;
 
-ReporteGenero v2=new ReporteGenero();
+   ReporteGenero v2 = new ReporteGenero();
+
     public Dasboard() {
         initComponents();
+        listCumpleaños(JtableCumpleaños);
         initNoticeBoard();
         listDatos();
-   
+
     }
 
     void initNoticeBoard() {
-       LocalDate now = LocalDate.now();
+
+        LocalDate now = LocalDate.now();
         int year = now.getYear();
         int dia = now.getDayOfMonth();
         int month = now.getMonthValue();
         String[] meses = {"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", " ;Septiembre",
-             "Octubre", "Noviembre", "Diciemrbre"};
-   
+            "Octubre", "Noviembre", "Diciemrbre"};
 
-       this.add(v2,ventana2);
+       this.add(v2, ventana2);
         noticeBoard.addDate("04/10/2021");
         noticeBoard.addNoticeBoard(new ModelNoticeBoard(new Color(94, 49, 238), "Hidemode", "Now", "Sets the hide mode for the component. If the hide mode has been specified in the This hide mode can be overridden by the component constraint."));
-      
-        String fecha=dia + " de " + meses[month - 1] + " de " + year;
-        card0011.setData(new Model_Card2(new ImageIcon(getClass().getResource("/com/icon/today_20px.png")), "Hoy es", fecha,""));
+
+        String fecha = dia + " de " + meses[month - 1] + " de " + year;
+        card0011.setData(new Model_Card2(new ImageIcon(getClass().getResource("/com/icon/Today_64px.png")), "Hoy es", fecha, ""));
     }
 
-                 
-    
+    private void listCumpleaños(JTable tablaD) {
+        DefaultTableModel modeloTabla = new DefaultTableModel();
+        tablaD.setModel(modeloTabla);
+        JTableHeader jtableHeader = tablaD.getTableHeader();
+        jtableHeader.setDefaultRenderer(new GestionEncabezadoTabla());
+        tablaD.setTableHeader(jtableHeader);
+        tablaD.setRowHeight(20);
+
+        modeloTabla.addColumn("Núm. Empleado");
+        modeloTabla.addColumn("Nombre");
+        modeloTabla.addColumn("Fecha Nacimiento");
+        modeloTabla.addColumn("Edad");
+
+        TableColumnModel columnModel = tablaD.getColumnModel();
+        columnModel.getColumn(0).setPreferredWidth(80);
+        columnModel.getColumn(1).setPreferredWidth(200);
+        columnModel.getColumn(2).setPreferredWidth(180);
+        columnModel.getColumn(3).setPreferredWidth(70);
+
+        int numReg = daoCump.listCump().size();
+        //numReg de solo UNA TABLA faltan las demas
+        Object[] columna = new Object[4];
+
+        for (int i = 0; i < numReg; i++) {
+            cumpleaños1.setData(new ModelCumpleaños(daoCump.listCump().get(i).getNumEmple(),daoCump.listCump().get(i).getNombreCompleto(),daoCump.listCump().get(i).getFechaNac(),daoCump.listCump().get(i).getEdad2()));
+            columna[0] = daoCump.listCump().get(i).getNumEmple();
+            columna[1] = daoCump.listCump().get(i).getNombreCompleto();
+            columna[2] = daoCump.listCump().get(i).getFechaNac();
+            columna[3] = daoCump.listCump().get(i).getEdad2();
+            modeloTabla.addRow(columna);
+
+//            int total = tablaD.getRowCount();
+//            String totalLista = Integer.toString(total);
+//          //  totalR.setText(totalLista);
+        }
+    }
+
     public void listDatos() {
-       Conexion cc = new Conexion();
-       Connection con = cc.getConnection();
-       ModelDasboard md = new ModelDasboard();
+        Conexion cc = new Conexion();
+        Connection con = cc.getConnection();
+        ResultSet res, res2, res3;
         try {
             PreparedStatement ps = con.prepareStatement(
                     "SELECT count(id_empleado) from tbl_empleado");
-            ResultSet res = ps.executeQuery();
+            res = ps.executeQuery();
             res.next();
-            total = String.valueOf(res.getInt("count(id_empleado)"));
-            md.setMax(String.valueOf(res.getInt("count(id_empleado)")));
-            System.out.println("esto " + md.getMax());
-            res.close();
+            PreparedStatement ps1 = con.prepareStatement(
+                    "SELECT count(id_empleo) from tbl_empleo where tipo_contratacion='Nòmina'");
+            res2 = ps1.executeQuery();
+            res2.next();
 
+            PreparedStatement ps2 = con.prepareStatement(
+                    "SELECT count(id_empleo) from tbl_empleo where tipo_contratacion='Honorarios'");
+            res3 = ps2.executeQuery();
+            res3.next();
+            total = String.valueOf(res.getInt("count(id_empleado)"));
+            String total2 = String.valueOf(res2.getInt("count(id_empleo)"));
+            String total3 = String.valueOf(res3.getInt("count(id_empleo)"));
+            res.close();
+            res2.close();
+            res3.close();
             card1.setData(new ModelCard(null, null, null, total, "Total de Personal Activo"));
-            card2.setData(new ModelCard(null, null, null, total, "Personal de Nómina"));
-            card3.setData(new ModelCard(null, null, null, "0", "Personal por Honorarios"));
+            card2.setData(new ModelCard(null, null, null, total2, "Personal de Nómina"));
+            card3.setData(new ModelCard(null, null, null, total3, "Personal por Honorarios"));
             card4.setData(new ModelCard(null, null, null, "0", "Personal dado de baja"));
         } catch (SQLException e) {
             System.out.println(e);
+//        } finally {
+//            try {
+//                if (con != null) {
+//                    cc.cerrar();
+//                }
+//            } catch (SQLException ex) {
+//
+//                JOptionPane.showMessageDialog(null, "Error al intentar cerrar la conexión:\n"
+//                        + ex, "Error en la operación", JOptionPane.ERROR_MESSAGE);
+//            }
         }
     }
 
@@ -89,8 +152,9 @@ ReporteGenero v2=new ReporteGenero();
         panelRound2 = new com.swing.PanelRound();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        JtableCumpleaños = new javax.swing.JTable();
         jLabel4 = new javax.swing.JLabel();
+        cumpleaños1 = new com.component.Cumpleaños();
         jPanel2 = new javax.swing.JPanel();
         card1 = new com.component.Card();
         card2 = new com.component.Card();
@@ -116,8 +180,8 @@ ReporteGenero v2=new ReporteGenero();
         jLabel2.setForeground(new java.awt.Color(51, 51, 51));
         jLabel2.setText("Este mes cumplen años");
 
-        jTable1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        JtableCumpleaños.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        JtableCumpleaños.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null}
@@ -126,13 +190,13 @@ ReporteGenero v2=new ReporteGenero();
                 "Nombre", "Fecha de nacimiento", "Edad"
             }
         ));
-        jTable1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jTable1.setEnabled(false);
-        jTable1.setRowHeight(18);
-        jTable1.setRowSelectionAllowed(false);
-        jTable1.setShowGrid(true);
-        jTable1.setShowVerticalLines(false);
-        jScrollPane2.setViewportView(jTable1);
+        JtableCumpleaños.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        JtableCumpleaños.setEnabled(false);
+        JtableCumpleaños.setRowHeight(18);
+        JtableCumpleaños.setRowSelectionAllowed(false);
+        JtableCumpleaños.setShowGrid(true);
+        JtableCumpleaños.setShowVerticalLines(false);
+        jScrollPane2.setViewportView(JtableCumpleaños);
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/icon/globos-de-aire (1).png"))); // NOI18N
 
@@ -141,14 +205,21 @@ ReporteGenero v2=new ReporteGenero();
         panelRound2Layout.setHorizontalGroup(
             panelRound2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelRound2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(panelRound2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2)
                     .addGroup(panelRound2Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(211, 211, 211)
-                        .addComponent(jLabel4))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 379, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap()
+                        .addGroup(panelRound2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelRound2Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jLabel2)
+                                .addGap(211, 211, 211)
+                                .addComponent(jLabel4)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(panelRound2Layout.createSequentialGroup()
+                                .addComponent(cumpleaños1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))))
+                .addContainerGap())
         );
         panelRound2Layout.setVerticalGroup(
             panelRound2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -156,13 +227,14 @@ ReporteGenero v2=new ReporteGenero();
                 .addGroup(panelRound2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelRound2Layout.createSequentialGroup()
                         .addGap(33, 33, 33)
-                        .addComponent(jLabel2)
-                        .addGap(41, 41, 41)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel2))
                     .addGroup(panelRound2Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel4)))
-                .addContainerGap(96, Short.MAX_VALUE))
+                .addGap(21, 21, 21)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(cumpleaños1, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         jPanel2.setLayout(new java.awt.GridLayout(1, 0, 8, 0));
@@ -324,7 +396,7 @@ ReporteGenero v2=new ReporteGenero();
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(20, 20, 20)
                         .addComponent(panelRound3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(84, 84, 84)
+                        .addGap(41, 41, 41)
                         .addComponent(panelRound2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(25, Short.MAX_VALUE))
@@ -350,7 +422,7 @@ ReporteGenero v2=new ReporteGenero();
 
         add(jPanel1, "card2");
     }// </editor-fold>//GEN-END:initComponents
-  
+
     private void lbDepartamentoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbDepartamentoMouseEntered
         lbDepartamento.setFont(new java.awt.Font("Segoe UI", 1, 14));
     }//GEN-LAST:event_lbDepartamentoMouseEntered
@@ -376,25 +448,30 @@ ReporteGenero v2=new ReporteGenero();
     }//GEN-LAST:event_lbGeneroMouseExited
 
     private void lbGeneroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbGeneroMouseClicked
-  
-          CardLayout cl=(CardLayout)(this.getLayout());
-     cl.show(this, ventana2);
-        Notification panel = new Notification(new MainSystem(), Notification.Type.SUCCESS, Notification.Location.TOP_CENTER, "Reporte de personal por Género");
-        panel.showNotification();
+
+        CardLayout cl = (CardLayout) (this.getLayout());
+        cl.show(this, ventana2);
+
+
+
+        //  Notification panel = new Notification(new MainSystem(), Notification.Type.SUCCESS, Notification.Location.TOP_CENTER, "Reporte de personal por Género");
+        // panel.showNotification();
 
     }//GEN-LAST:event_lbGeneroMouseClicked
 
     private void lbDepartamentoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbDepartamentoMouseClicked
-     //  main.showForm(new ReporteGenero());
+        //  main.showForm(new ReporteGenero());
     }//GEN-LAST:event_lbDepartamentoMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable JtableCumpleaños;
     private com.component.Card001 card0011;
     private com.component.Card card1;
     private com.component.Card card2;
     private com.component.Card card3;
     private com.component.Card card4;
+    private com.component.Cumpleaños cumpleaños1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -403,7 +480,6 @@ ReporteGenero v2=new ReporteGenero();
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lbCategoria;
     private javax.swing.JLabel lbDepartamento;
     public javax.swing.JLabel lbGenero;

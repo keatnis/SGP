@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.19.0.final using JasperReports Library version 6.19.0-646c68931cebf1a58bc65c4359d1f0ca223c5e94  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="pase_de_salida" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d419b90e-a269-45fb-bccd-8b8516e83b1c">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="prueba"/>
+        <property name="net.sf.jasperreports.awt.ignore.missing.font" value="true"/>
+	<parameter name="numEmp" class="java.lang.String"/>
+	<parameter name="Folio" class="java.lang.String"/>
+	<parameter name="Hora1" class="java.lang.String"/>
+	<parameter name="Hora2" class="java.lang.String"/>
+	<parameter name="logo1" class="java.lang.String"/>
+	<parameter name="logo3" class="java.lang.String"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT concat(tbl_empleado.abrev_nombre,' ',tbl_empleado.nombre,' ',tbl_empleado.ape_paterno,' ',tbl_empleado.ape_materno)NombreCombleto,tbl_empleado.num_empleado,tbl_empleo.jefe_inmediato,tbl_empleo.horario_trabajo FROM tbl_empleado,tbl_empleo 
+where tbl_empleado.num_empleado=$P{numEmp}  and tbl_empleado.num_empleado=tbl_empleo.num_empleado]]>
+	</queryString>
+	<field name="NombreCombleto" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="NombreCombleto"/>
+		<property name="com.jaspersoft.studio.field.label" value="NombreCombleto"/>
+	</field>
+	<field name="num_empleado" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="num_empleado"/>
+		<property name="com.jaspersoft.studio.field.label" value="num_empleado"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="tbl_empleado"/>
+	</field>
+	<field name="jefe_inmediato" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="jefe_inmediato"/>
+		<property name="com.jaspersoft.studio.field.label" value="jefe_inmediato"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="tbl_empleo2"/>
+	</field>
+	<field name="horario_trabajo" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="horario_trabajo"/>
+		<property name="com.jaspersoft.studio.field.label" value="horario_trabajo"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="tbl_empleo2"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="81" splitType="Stretch">
+			<staticText>
+				<reportElement x="360" y="40" width="178" height="20" uuid="099196ca-be63-48f2-b8ea-09c6046b5b0e"/>
+				<textElement textAlignment="Right">
+					<font fontName="Montserrat&#xD;&#xA;&#xD;&#xA;Montserrat" size="8"/>
+				</textElement>
+				<text><![CDATA[Departamento de Recursos Humanos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="360" y="20" width="208" height="14" forecolor="#574D4D" uuid="5ac0ff10-893a-4a58-8450-fef925ebab79"/>
+				<textElement textAlignment="Right">
+					<font fontName="Montserrat Medium&#xD;&#xA;" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Instituto Tecnológico Superior de la Montaña]]></text>
+			</staticText>
+			<image>
+				<reportElement x="10" y="20" width="250" height="59" uuid="d41009e3-e7ca-4cf4-a610-127f601b69a0"/>
+				<imageExpression><![CDATA[$P{logo1}]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="270" y="21" width="83" height="59" uuid="c4951151-e24c-42fa-bc07-b6655efe228c"/>
+				<imageExpression><![CDATA[$P{logo3}]]></imageExpression>
+			</image>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="53" splitType="Stretch">
+			<staticText>
+				<reportElement x="180" y="24" width="200" height="26" uuid="ddc55003-5341-4f02-97b2-5a4424530ce2"/>
+				<textElement textAlignment="Center">
+					<font fontName="&#xD;&#xA;Serif" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PASE DE SALIDA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="180" y="8" width="200" height="26" uuid="e70e76bf-009b-40c2-8ee3-e4ea6214cbd8"/>
+				<textElement textAlignment="Center">
+					<font fontName="Serif" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CONTROL DE INCIDENCIAS]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="432" splitType="Stretch">
+			<staticText>
+				<reportElement x="298" y="29" width="40" height="20" uuid="8cc5f5bb-57cb-4e57-8f8b-438ba47f89b6"/>
+				<textElement>
+					<font fontName="Century Gothic" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha:]]></text>
+			</staticText>
+			<textField pattern="EEEE, d &apos;de&apos; MMMM  &apos;de&apos; yyyy">
+				<reportElement x="341" y="29" width="220" height="20" uuid="ce7750a9-06a5-4256-9819-bfd1cd00bd76"/>
+				<textElement>
+					<font fontName="Century Gothic" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="18" y="28" width="41" height="21" uuid="e3f8dd74-4d89-4b4a-9da6-b4730b04edf4"/>
+				<textElement>
+					<font fontName="Times New Roman" size="13"/>
+				</textElement>
+				<text><![CDATA[Folio:]]></text>
+			</staticText>
+			<rectangle radius="7">
+				<reportElement x="10" y="60" width="551" height="90" uuid="2e142b2d-5051-429e-99ac-f039f4c8712e"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="18" y="76" width="151" height="22" uuid="aecb4ff0-3e68-4217-bd54-3c4bd1597dac"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nombre del solicitante:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="18" y="116" width="130" height="23" uuid="535022a0-5257-4f89-87fe-fe869d20ee79"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[No. de empleado:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="298" y="119" width="110" height="23" uuid="d6fa4f45-cf5a-42db-a6ea-77218036afc6"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Horario de trabajo:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="20" y="160" width="90" height="23" uuid="eb36d769-c111-4d2b-b2b6-25ed00226881"/>
+				<textElement>
+					<font fontName="DejaVu Serif" size="11"/>
+				</textElement>
+				<text><![CDATA[Hora de salida:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="300" y="160" width="100" height="23" uuid="1bbb925c-9d0c-416b-b6af-ef84d311e487"/>
+				<textElement>
+					<font fontName="DejaVu Serif" size="11"/>
+				</textElement>
+				<text><![CDATA[Hora de llegada:]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="10" y="190" width="551" height="50" uuid="db798e28-f7fb-4ed8-bc5f-5c1dde71e5ac"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="18" y="200" width="51" height="18" uuid="1b7a3b7f-a92d-42cb-ae7d-5689bcfc9de2"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ASUNTO:]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="10" y="250" width="260" height="121" uuid="92c848e5-7447-4953-be0f-0cb04eebd75f"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="290" y="250" width="271" height="121" uuid="124b5847-8dab-442c-bc3e-4271d5d16dfd"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="350" width="260" height="20" uuid="f8228691-baaa-4ae3-a92f-92f6db9f6f7f"/>
+				<textElement textAlignment="Center">
+					<font fontName="DejaVu Serif" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FIRMA DEL SOLICITANTE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="299" y="350" width="268" height="20" uuid="e032bf55-d81c-4153-baa1-28d6339ea2ea"/>
+				<textElement textAlignment="Center">
+					<font fontName="DejaVu Serif" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FIRMA DEL JEFE INMEDIATO Y SELLO]]></text>
+			</staticText>
+			<line>
+				<reportElement x="20" y="339" width="231" height="1" uuid="c573027c-1ffe-4550-b325-a5327e0df95e">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+			</line>
+			<line>
+				<reportElement x="320" y="340" width="231" height="1" uuid="d23d1063-d7a3-4b1b-8308-2d4b02651eb4">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+			</line>
+			<textField>
+				<reportElement x="170" y="76" width="340" height="24" uuid="0e63bdc3-d0d4-427f-ba84-546fc0081ff7">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="90c5e886-01b7-40a2-ad95-fdf68334cfc8"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Century Gothic" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NombreCombleto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="170" y="116" width="120" height="23" uuid="378c8ae3-f662-4166-b883-6f16d614e764">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="18bc3f6a-c01b-4b35-bc09-3548f1cf531e"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Century Gothic" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{num_empleado}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="420" y="119" width="141" height="20" uuid="24ad7e05-e6a8-487e-9017-aee3f247c74d">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4b63d06c-48b1-48e4-b807-446d14c8f908"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Century Gothic" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{horario_trabajo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="300" y="320" width="261" height="19" uuid="51d4baf1-5c37-4a41-a74f-eeeae64656a2">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="d9a371d3-74c5-4ae3-b338-b2eec1b0ab6e"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="13"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{jefe_inmediato}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="60" y="29" width="100" height="20" uuid="a08a7ade-b2d7-45f9-b99e-044a9257d442"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{Folio}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="120" y="157" width="110" height="23" uuid="fd670af7-6a74-4fd0-afa6-613bd4a3e7e4"/>
+				<textElement>
+					<font fontName="DejaVu Serif" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{Hora1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="410" y="160" width="110" height="23" uuid="28b740dd-8c9b-4c4f-90e2-02437b66ef88"/>
+				<textElement>
+					<font fontName="DejaVu Serif" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{Hora2}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="10" y="380" width="551" height="42" backcolor="#296F9E" uuid="a6939f62-935d-4efd-a013-1e5b238a4d03"/>
+				<textElement textAlignment="Justified">
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Nota: Los pases de salida son únicamente con regreso a la institución para continuar con sus labores normales, con un máximo de 2 horas de ausencia de la misma (EL TIEMPO EXCEDIDO SE APLICARÁ DESCUENTO).]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+</jasperReport>

@@ -5,6 +5,7 @@ import com.formdev.flatlaf.FlatLightLaf;
 import com.model.ModelUsers;
 import java.awt.BorderLayout;
 import java.awt.Component;
+import javax.swing.ImageIcon;
 import javax.swing.UIManager;
 
 public class MainSystem extends javax.swing.JFrame {
@@ -16,9 +17,9 @@ public class MainSystem extends javax.swing.JFrame {
         initComponents();
         this.showForm(new Dasboard(),"Dasboard");
 
-   // this.setShape(new RoundRectangle2D.Double(0, 0, getWidth(),getHeight(), 20, 20));
-      // this.user = user;
-     //   lbUser.setText(user.getNombre());
+//   // this.setShape(new RoundRectangle2D.Double(0, 0, getWidth(),getHeight(), 20, 20));
+//       this.user = user;
+//        lbUser.setText(user.getNombre());
 //    if(user.getAvatar()==null){
 //
 //
@@ -28,8 +29,8 @@ public class MainSystem extends javax.swing.JFrame {
 //    }else{
 //         imgAvatar.setIcon(new ImageIcon(user.getAvatar()));
 //    }
-        this.repaint();
-    }
+//        this.repaint();
+  }
     
 
   public void showForm(Component form) {
@@ -244,7 +245,7 @@ public class MainSystem extends javax.swing.JFrame {
 
         MenuBar.add(menuPersonal);
 
-        jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/icon/search_2.png"))); // NOI18N
+        jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/icon/folder_30px.png"))); // NOI18N
         jMenu4.setText("Documentos");
 
         jMenuItem10.setText("Expediente del personal");
@@ -256,7 +257,7 @@ public class MainSystem extends javax.swing.JFrame {
         MenuBar.add(jMenu4);
 
         jMenu6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/icon/report.png"))); // NOI18N
-        jMenu6.setText("Contro de Incidencias");
+        jMenu6.setText("Control de Incidencias");
 
         jMenuItem2.setText("Reportar Incidencia");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
@@ -394,9 +395,9 @@ public class MainSystem extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelBody, javax.swing.GroupLayout.DEFAULT_SIZE, 1377, Short.MAX_VALUE)
+            .addComponent(panelBody, javax.swing.GroupLayout.DEFAULT_SIZE, 1400, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(panelEnc, javax.swing.GroupLayout.DEFAULT_SIZE, 1367, Short.MAX_VALUE)
+                .addComponent(panelEnc, javax.swing.GroupLayout.DEFAULT_SIZE, 1390, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -515,6 +516,8 @@ public class MainSystem extends javax.swing.JFrame {
     public static void main(String args[]) {
         try {
             UIManager.setLookAndFeel(new FlatLightLaf());
+            UIManager.put( "Button.arc", 100 );
+            UIManager.put( "TextComponent.arc", 10 );
         } catch (Exception ex) {
             System.err.println("Failed to initialize LaF");
 
@@ -524,7 +527,7 @@ public class MainSystem extends javax.swing.JFrame {
                 new MainSystem().setVisible(true);
             }
         });
-    }
+  }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu Dasboard;
     private javax.swing.JMenuBar MenuBar;

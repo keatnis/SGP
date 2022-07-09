@@ -1,14 +1,218 @@
-
 package com.model;
 
 public class ModelPersonalN {
- 
-    //Getters y Setters de los datos generales del Personal
-private String num_empleado,Abrev,Nombres,ApellidoP, ApellidoM,Sexo,FechaNacimiento,EDAD,CURP,RFC,IMSS,Telefono, CorreoPersonal,CorreoInst,LenguaIndigena,
-        Incapacidad,EstadoCivil,TipoSangre,Dirección,Colonia,Localidad,NombreCEmerg,ParentestoCEmerg,TelefonoCE;
-private int Id;
 
-private String a;
+    //Getters y Setters de los datos generales del Personal
+    private String num_empleado, Abrev, Nombres, ApellidoP, ApellidoM, Sexo, FechaNacimiento, EDAD, CURP, RFC, IMSS, Telefono, CorreoPersonal, CorreoInst, LenguaIndigena,
+            Incapacidad, EstadoCivil, TipoSangre, Dirección, Colonia, Localidad, NombreCEmerg, ParentestoCEmerg, TelefonoCE, foto_paht;
+
+    private int Id, estado1;
+//getters y setters de los datos de la tabla empleo
+    String codigo, fechaTerminoCont, fechaIngreso, jefeInmediato, puesto, areaAdscripción, categoria, horasLaborales, tipoPlaza, sindicato, horarioTrabajo, sueldo, plantel, tipoContratacion, numEmpleado;
+
+ byte[] formatoFUMP;
+
+    public byte[] getFormatoFUMP() {
+        return formatoFUMP;
+    }
+
+    public void setFormatoFUMP(byte[] formatoFUMP) {
+        this.formatoFUMP = formatoFUMP;
+    }
+    public String getFoto_paht() {
+        return foto_paht;
+    }
+
+    public void setFoto_paht(String foto_paht) {
+        this.foto_paht = foto_paht;
+    }
+
+    public String getFechaTerminoCont() {
+        return fechaTerminoCont;
+    }
+
+    public void setFechaTerminoCont(String fechaTerminoCont) {
+        this.fechaTerminoCont = fechaTerminoCont;
+    }
+//getters y setters de los datos de la tabla derechohabiente
+    String nombredh, fechaNacdh, parentesco, padreomadre, edaddh, estado;
+
+    public int getEstadoi() {
+        return estado1;
+    }
+
+    public void setEstadoi(int estado1) {
+        this.estado1 = estado1;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    public String getEdaddh() {
+        return edaddh;
+    }
+
+    public void setEdaddh(String edaddh) {
+        this.edaddh = edaddh;
+    }
+
+    public String getNombredh() {
+        return nombredh;
+    }
+
+    public void setNombredh(String nombredh) {
+        this.nombredh = nombredh;
+    }
+
+    public String getFechaNacdh() {
+        return fechaNacdh;
+    }
+
+    public void setFechaNacdh(String fechaNacdh) {
+        this.fechaNacdh = fechaNacdh;
+    }
+
+    public String getParentesco() {
+        return parentesco;
+    }
+
+    public void setParentesco(String parentesco) {
+        this.parentesco = parentesco;
+    }
+
+    public String getPadreomadre() {
+        return padreomadre;
+    }
+
+    public void setPadreomadre(String padreomadre) {
+        this.padreomadre = padreomadre;
+    }
+
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
+    }
+
+    public String getFechaIngreso() {
+        return fechaIngreso;
+    }
+
+    public void setFechaIngreso(String fechaIngreso) {
+        this.fechaIngreso = fechaIngreso;
+    }
+
+    public String getJefeInmediato() {
+        return jefeInmediato;
+    }
+
+    public void setJefeInmediato(String jefeInmediato) {
+        this.jefeInmediato = jefeInmediato;
+    }
+
+    public String getPuesto() {
+        return puesto;
+    }
+
+    public void setPuesto(String puesto) {
+        this.puesto = puesto;
+    }
+
+    public String getAreaAdscripción() {
+        return areaAdscripción;
+    }
+
+    public void setAreaAdscripción(String areaAdscripción) {
+        this.areaAdscripción = areaAdscripción;
+    }
+
+    public String getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
+    }
+
+    public String getHorasLaborales() {
+        return horasLaborales;
+    }
+
+    public void setHorasLaborales(String horasLaborales) {
+        this.horasLaborales = horasLaborales;
+    }
+
+    public String getTipoPlaza() {
+        return tipoPlaza;
+    }
+
+    public void setTipoPlaza(String tipoPlaza) {
+        this.tipoPlaza = tipoPlaza;
+    }
+
+    public String getSindicato() {
+        return sindicato;
+    }
+
+    public void setSindicato(String sindicato) {
+        this.sindicato = sindicato;
+    }
+
+    public String getHorarioTrabajo() {
+        return horarioTrabajo;
+    }
+
+    public void setHorarioTrabajo(String horarioTrabajo) {
+        this.horarioTrabajo = horarioTrabajo;
+    }
+
+    public String getSueldo() {
+        return sueldo;
+    }
+
+    public void setSueldo(String sueldo) {
+        this.sueldo = sueldo;
+    }
+
+    public String getPlantel() {
+        return plantel;
+    }
+
+    public void setPlantel(String plantel) {
+        this.plantel = plantel;
+    }
+
+    public String getTipoContratacion() {
+        return tipoContratacion;
+    }
+
+    public void setTipoContratacion(String tipoContratacion) {
+        this.tipoContratacion = tipoContratacion;
+    }
+
+    public String getNumEmpleado() {
+        return numEmpleado;
+    }
+
+    public void setNumEmpleado(String numEmpleado) {
+        this.numEmpleado = numEmpleado;
+    }
+
+    public String getA() {
+        return a;
+    }
+
+    public void setA(String a) {
+        this.a = a;
+    }
+    private String a;
 
     public int getId() {
         return Id;
@@ -25,6 +229,7 @@ private String a;
     public void setId(int Id) {
         this.Id = Id;
     }
+
     public String getEDAD() {
         return EDAD;
     }
@@ -209,5 +414,3 @@ private String a;
         this.TelefonoCE = TelefonoCE;
     }
 }
-
-

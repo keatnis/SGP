@@ -14,6 +14,7 @@ import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.PreparedStatement;
+
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -21,13 +22,14 @@ import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 
 public class UsuariosDAO extends Conexion {
-
+   PreparedStatement ps = null;
+        Connection con = getConnection();
+             ResultSet rs = null;
     RegistrarUsuario regU;
     File imagen;
     FileInputStream fis;
     public boolean registrar(ModelUsers usr) throws FileNotFoundException {
-        PreparedStatement ps = null;
-        Connection con = getConnection();
+     
        
        
            imagen = new File(usr.getRuta());
@@ -58,9 +60,9 @@ public class UsuariosDAO extends Conexion {
     }
 
     public int usuarioExiste(String usr) {
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-        Connection con = getConnection();
+        
+   
+    
 
         String sql = "SELECT count(id_usuario) from tbl_usuario WHERE usuario=?";
         try {
@@ -81,9 +83,7 @@ public class UsuariosDAO extends Conexion {
     }
 
     public boolean login(ModelUsers usr) {
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-        Connection con = getConnection();
+  
 
         String sql = "SELECT id_usuario,usuario,password,nombre,tipo_usuario,avatar from tbl_usuario WHERE usuario=? and `status`='Activo' limit 1";
         try {

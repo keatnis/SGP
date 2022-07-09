@@ -14,11 +14,12 @@ import javax.swing.JOptionPane;
 
 
 public class DasboardDAO extends Conexion{
-     public int usuarioExiste(int das) {
-    
-        PreparedStatement ps = null;
+     PreparedStatement ps = null;
         ResultSet rs = null;
         Connection con = getConnection();
+     public int usuarioExiste(int das) {
+    
+       
 
         String sql = "SELECT count(id_usuario) from tbl_usuario";
         try {
@@ -37,16 +38,16 @@ public class DasboardDAO extends Conexion{
         }
     }
          public void listDatos(){
-               Connection con = getConnection();
+               
                ModelDasboard md= new ModelDasboard();
          try {     
       
-            PreparedStatement ps = con.prepareStatement(
+            ps = con.prepareStatement(
             "SELECT count(id_usuario) from usuarios");                       
-            ResultSet res = ps.executeQuery();
-            res.next();
-            md.setMax(String.valueOf(res.getInt("id_usuario")));
-            res.close();
+            rs = ps.executeQuery();
+            rs.next();
+            md.setMax(String.valueOf(rs.getInt("id_usuario")));
+            rs.close();
           }catch(SQLException e){
          System.out.println(e);
     }

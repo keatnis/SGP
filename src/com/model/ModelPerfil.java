@@ -44,20 +44,37 @@ public class ModelPerfil {
     public void setTeléfono(String teléfono) {
         this.teléfono = teléfono;
     }
-    public ModelPerfil(String nombre,String puesto,String cumple,String sueldo,String telefono){
-        this.nombre = nombre;
-        this.puesto = puesto;
-        this.cumple = cumple;
-        this.sueldo = sueldo;
-        this.teléfono = telefono;
-        
+    public String getNume() {
+        return nume;
     }
-    public ModelPerfil(){
-        
+
+    public void setNume(String nume) {
+        this.nume = nume;
     }
+
+    public String getCorreo() {
+        return correo;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
+//    public ModelPerfil(String nombre,String puesto,String cumple,String sueldo,String telefono){
+//        this.nombre = nombre;
+//        this.puesto = puesto;
+//        this.cumple = cumple;
+//        this.sueldo = sueldo;
+//        this.teléfono = telefono;
+//        
+//    }
+
 private String nombre;
 private String puesto;
 private String cumple;
 private String sueldo;
 private String teléfono;
+private String nume;
+private String correo;
+
+    
 }

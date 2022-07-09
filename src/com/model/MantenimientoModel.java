@@ -1,8 +1,8 @@
 
 package com.model;
 
-public class JefeInmediatoModel {
-
+public class MantenimientoModel {
+ 
     public int getId() {
         return id;
     }

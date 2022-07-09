@@ -19,30 +19,31 @@ import java.util.logging.Logger;
 import javax.swing.WindowConstants;
 import net.sf.jasperreports.view.JasperViewer;
 public class PaseSalida extends javax.swing.JPanel {
-Conexion con;
+Conexion con =new Conexion();
     public PaseSalida() {
         initComponents();
     }
 void generarReporte() throws JRException{
-   JasperReport archivo = JasperCompileManager.compileReport("src/com/reports/pase_salida.jrxml");
+   JasperReport archivo = JasperCompileManager.compileReport("src/com/reports/pase_de_salida.jrxml");
         Map<String,Object> map = new HashMap<String, Object>();
         Conectar con = new Conectar("jdbc:mysql://localhost/db_rh?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC");
         
         String numE=txtNumE.getText();
         String hora1=txtHora1.getText();
          String hora2=txtHora2.getText();
-        map.put("NumEmp",numE);
+        map.put("numEmp",numE);
         map.put("logo1", "src/com/icon/ede.png");
         map.put("logo3", "src/com/icon/guerrero.png");
         map.put("Hora1", hora1);
         map.put("Hora2", hora2);
         map.put("Folio", "001");
-        JasperPrint prin = JasperFillManager.fillReport(archivo, map,con.getConnection());
+        JasperPrint prin = JasperFillManager.fillReport(archivo,map,con.getConnection());
        
         JasperViewer view = new JasperViewer(prin, false);
             view.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
             view.setVisible(true);
 }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {

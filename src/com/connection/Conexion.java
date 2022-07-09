@@ -9,10 +9,10 @@ public class Conexion {
       private static Connection conn;
     private static final String driver = "com.mysql.cj.jdbc.Driver";
     private static final String user = "root";
-    private static final String pass = "";
-    private static final String db = "db_rh";
-   
-    private static final String time = "?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+    private static final String pass = "root";
+    private static final String db = "db_rh?";
+   private static final String unicode="useSSL=false&autoReconnect=true&useUnicode=yes&characterEncoding=UTF-8&";
+    private static final String time = "&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
     private static final String url = "jdbc:mysql://localhost/"+db+time;
     public Conexion(){
         conn = null;
